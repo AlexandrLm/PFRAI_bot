@@ -98,6 +98,11 @@ class ApiClient:
         response = await self._make_request("GET", "/api/v1/pension_types")
         return response.json()
 
+    async def get_pension_documents(self, pension_type_id: str) -> List[Dict[str, Any]]:
+        """Получает список требуемых документов для типа пенсии."""
+        response = await self._make_request("GET", f"/api/v1/pension_documents/{pension_type_id}")
+        return response.json()
+
     async def submit_ocr_task(self, document_type: str, image_bytes: bytes, filename: str) -> Dict[str, Any]:
         """Отправляет документ на OCR обработку."""
         files = {'image': (filename, image_bytes)}

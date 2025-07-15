@@ -46,6 +46,8 @@ class NewCaseFlow(Enum):
     AWAIT_WORK_BOOK_PHOTO = auto()
     # --- КОНЕЦ НОВЫХ СОСТОЯНИЙ ---
     
+    # Сбор данных о поданных документах
+    GET_STANDARD_DOCS = auto()
+
     # Финальный шаг
     CONFIRM_CREATION = auto()
-    GET_SUBMITTED_DOCS = 20

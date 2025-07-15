@@ -87,3 +87,24 @@ def ocr_suggestion_keyboard(ocr_callback: str, skip_callback: str) -> InlineKeyb
     ]
     return InlineKeyboardMarkup(buttons)
 # --- КОНЕЦ НОВОЙ КЛАВИАТУРЫ ---
+
+def standard_documents_keyboard(
+    documents: List[Dict[str, Any]], selected_ids: List[str]
+) -> InlineKeyboardMarkup:
+    """
+    Динамическая клавиатура для выбора предоставленных стандартных документов.
+    """
+    buttons = []
+    for doc in documents:
+        doc_id = doc["id"]
+        # Отмечаем выбранные документы галочкой
+        text = f"✅ {doc['name']}" if doc_id in selected_ids else doc["name"]
+        buttons.append(
+            [InlineKeyboardButton(text, callback_data=f"std_doc_{doc_id}")]
+        )
+
+    buttons.append(
+        [InlineKeyboardButton("✔️ Готово", callback_data="std_doc_done")]
+    )
+    buttons.append([InlineKeyboardButton("« Отмена", callback_data="cancel_case")])
+    return InlineKeyboardMarkup(buttons)
